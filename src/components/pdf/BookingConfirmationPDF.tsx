@@ -46,7 +46,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#ffffff',
     fontFamily: 'Helvetica',
-    position: 'relative',
+    paddingTop: 80,
+    paddingBottom: 80,
+    paddingHorizontal: 0,
   },
   header: {
     backgroundColor: '#0b6c6c',
@@ -55,6 +57,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 48,
     paddingVertical: 24,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
   },
   logo: {
     width: 80,
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
   },
   main: {
     padding: 24,
-    paddingBottom: 60,
+    flex: 1,
   },
   introText: {
     fontSize: 12,
@@ -157,8 +163,8 @@ export const BookingConfirmationPDF: React.FC<BookingConfirmationPDFProps> = ({
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* Header */}
-      <View style={styles.header}>
+      {/* Header - fixed on every page */}
+      <View style={styles.header} fixed>
         <Image src={logoSrc} style={styles.logo} />
         <Text style={styles.headerTitle}>Confirmação de pedido</Text>
       </View>
@@ -303,8 +309,8 @@ export const BookingConfirmationPDF: React.FC<BookingConfirmationPDFProps> = ({
         </View>
       </View>
 
-      {/* Footer */}
-      <View style={styles.footer}>
+      {/* Footer - fixed on every page */}
+      <View style={styles.footer} fixed>
         <Text style={styles.footerText}>
           Terça-feira, 27 de maio de 2025 - Rondonopolis - PR{'\n'}
           © 2025 Conecta Brado
@@ -313,4 +319,3 @@ export const BookingConfirmationPDF: React.FC<BookingConfirmationPDFProps> = ({
     </Page>
   </Document>
 );
-
